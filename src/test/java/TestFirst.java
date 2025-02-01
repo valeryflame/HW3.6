@@ -23,10 +23,8 @@ public class TestFirst {
 
     @Test
     void fillFormTest() {
-        // Открыть страницу с формой
         open("/automation-practice-form");
 
-        // Заполнить поля формы
         $("#firstName").setValue("Иван");
         $("#lastName").setValue("Иванов");
         $("#userEmail").setValue("ivan@example.com");
@@ -35,24 +33,20 @@ public class TestFirst {
         $("#currentAddress").setValue("Street 1");
         $("#hobbiesWrapper").$(byText("Music")).click();
         $("#subjectsInput").setValue("Math").pressEnter();
-        $("#state").click();
+        $("#state").scrollIntoView(true).click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Delhi")).click();
 
-        // Календарь
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("January");
         $(".react-datepicker__year-select").selectOption("1997");
-        $(".react-datepicker__day--015").click();  // 15-е число
+        $(".react-datepicker__day--015").click();
 
-        // Загрузка файла
         $("#uploadPicture").uploadFile(new File("/Users/valeowine/Downloads/images.png"));
 
-        // Отправить форму
         $("#submit").scrollIntoView(true).click();
 
-        // Проверить, что форма успешно отправлена
         $(".modal-content").should(appear);
         $(".modal-title").shouldHave(text("Thanks for submitting the form"));
     }
