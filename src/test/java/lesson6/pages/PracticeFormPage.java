@@ -3,8 +3,16 @@ package lesson6.pages;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import lesson6.components.CalendarComponent;
 
 public class PracticeFormPage {
+
+    CalendarComponent calendar = new CalendarComponent();
+
+    public PracticeFormPage setDateOfBirth(String month, String year, String day) {
+        calendar.setDate(month, year, day);
+        return this;
+    }
 
     public PracticeFormPage openForm() {
         open("/automation-practice-form");
@@ -60,14 +68,6 @@ public class PracticeFormPage {
     public PracticeFormPage selectCity(String city) {
         $("#city").click();
         $("#stateCity-wrapper").$(byText(city)).click();
-        return this;
-    }
-
-    public PracticeFormPage setDateOfBirth(String month, String year, String day) {
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption(month);
-        $(".react-datepicker__year-select").selectOption(year);
-        $(".react-datepicker__day--0" + day + ":not(.react-datepicker__day--outside-month)").click();
         return this;
     }
 

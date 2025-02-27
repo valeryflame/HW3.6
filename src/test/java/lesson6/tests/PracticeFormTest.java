@@ -20,7 +20,6 @@ public class PracticeFormTest {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.timeout = 5000;
     }
 
     @Test
@@ -40,8 +39,18 @@ public class PracticeFormTest {
                 .uploadPicture("test-files/images.png")
                 .submit();
 
-        resultsTable.checkResult("Student Name", "Иван Иванов");
+        resultsTable.checkResult("Student Name", "Иван Иванов")
+                .checkResult("Student Email", "ivan@example.com")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "1234567890")
+                .checkResult("Date of Birth", "15 January,1997")
+                .checkResult("Subjects", "Math")
+                .checkResult("Hobbies", "Music")
+                .checkResult("Picture", "images.png")
+                .checkResult("Address", "Street 1")
+                .checkResult("State and City", "NCR Delhi");
     }
+
 
     @Test
     void fillMinimalFormTest() {
@@ -53,8 +62,12 @@ public class PracticeFormTest {
                 .setPhoneNumber("1234567890")
                 .submit();
 
-        resultsTable.checkResult("Student Name", "Иван Иванов");
+        resultsTable.checkResult("Student Name", "Иван Иванов")
+                .checkResult("Student Email", "ivan@example.com")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "1234567890");
     }
+
 
     @Test
     void fillFormWithInvalidEmailTest() {
